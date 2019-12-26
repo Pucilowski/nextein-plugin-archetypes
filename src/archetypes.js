@@ -7,11 +7,7 @@ import {resolve, basename, extname, relative, dirname, sep} from 'path'
 
 export const loadArchetypes = async (dir, extension) => {
     const pattern = `${dir}/**/*.${extension}`
-    console.log(pattern)
     const files = await promisify(glob)(pattern, {root: process.cwd()})
-
-    console.log("files")
-    console.log(files)
 
     return files
         .map(file => readFileSync(file, 'utf-8'))
@@ -24,14 +20,11 @@ export const resolveArchetype = (post, archetypes) => {
     const categoryRanking = []
 
     var parts = post.data.category.split('/')
-    console.log("parts: " + parts)
     while (parts.length > 0) {
         categoryRanking.push(parts.join('/'))
 
         parts.pop()
     }
-
-    console.log(categoryRanking)
 
     var archetype = null
     categoryRanking.some(cat => {
@@ -45,14 +38,8 @@ export const resolveArchetype = (post, archetypes) => {
         archetype = archetypes.filter(arch => arch.name === "index")[0]
     }
 
-
-    console.log("found archetype: ", archetype)
-
     return archetype
 }
-
-export const applyArchetype = (post, archetype) => {}
-
 
 
 const fromYaml = (body) => {

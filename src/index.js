@@ -19,14 +19,12 @@ const applyArchetype = (posts) => (value) => {
 
     Object.keys(archetype.fields).forEach(field => {
         const fieldDef = archetype.fields[field]
-        console.log("field", field)
-        console.log(fieldDef)
 
         if (!data[field] && fieldDef.default) {
             data[field] = fieldDef.default
         }
 
-        if(field === 'page') {
+        if (field === 'page') {
             data[field] = fieldDef.default
         }
 
@@ -35,20 +33,10 @@ const applyArchetype = (posts) => (value) => {
                 case "ref":
                     data[field] = data[field].map(postName => {
                         const postUrl = `/${fieldDef.category}/${postName}`
-                        console.log("postUrl: " + postUrl)
 
                         return posts.find(post => {
-                            console.log("post.data.url: " + post.data.url)
                             return post.data.url === postUrl
                         })
-                    })
-
-                    const post = posts.find(post => {
-                        // console.log("urL")
-                        // console.log(post.data.url)
-                        // console.log(fieldDef.category)
-                        // console.log(data[field])
-                        // return post.data.url === postName
                     })
             }
         }
