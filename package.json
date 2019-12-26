@@ -2,14 +2,31 @@
   "name": "nextein-plugin-archetypes",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "watch": "babel --watch src --out-dir dist",
+    "build": "babel src --out-dir dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "glob": "^7.1.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.8.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "roots": [
+      "test/"
+    ],
+    "testRegex": "(/^test/.*|\\.(test|spec))\\.(js)$"
   }
 }

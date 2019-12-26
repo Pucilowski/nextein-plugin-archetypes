@@ -1,0 +1,5 @@
+title:
+  type: string
+related:
+  type: ref
+  category: posts
